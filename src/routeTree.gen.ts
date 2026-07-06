@@ -13,6 +13,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as AppIndexRouteImport } from './routes/_app.index'
 import { Route as AppRequestsIndexRouteImport } from './routes/_app.requests.index'
+import { Route as AppPricingIndexRouteImport } from './routes/_app.pricing.index'
 import { Route as AppCentersIndexRouteImport } from './routes/_app.centers.index'
 import { Route as AppCentersIdRouteImport } from './routes/_app.centers.$id'
 
@@ -35,6 +36,11 @@ const AppRequestsIndexRoute = AppRequestsIndexRouteImport.update({
   path: '/requests/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppPricingIndexRoute = AppPricingIndexRouteImport.update({
+  id: '/pricing/',
+  path: '/pricing/',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppCentersIndexRoute = AppCentersIndexRouteImport.update({
   id: '/centers/',
   path: '/centers/',
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/centers/$id': typeof AppCentersIdRoute
   '/centers/': typeof AppCentersIndexRoute
+  '/pricing/': typeof AppPricingIndexRoute
   '/requests/': typeof AppRequestsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -58,6 +65,7 @@ export interface FileRoutesByTo {
   '/': typeof AppIndexRoute
   '/centers/$id': typeof AppCentersIdRoute
   '/centers': typeof AppCentersIndexRoute
+  '/pricing': typeof AppPricingIndexRoute
   '/requests': typeof AppRequestsIndexRoute
 }
 export interface FileRoutesById {
@@ -67,13 +75,20 @@ export interface FileRoutesById {
   '/_app/': typeof AppIndexRoute
   '/_app/centers/$id': typeof AppCentersIdRoute
   '/_app/centers/': typeof AppCentersIndexRoute
+  '/_app/pricing/': typeof AppPricingIndexRoute
   '/_app/requests/': typeof AppRequestsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/centers/$id' | '/centers/' | '/requests/'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/centers/$id'
+    | '/centers/'
+    | '/pricing/'
+    | '/requests/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/' | '/centers/$id' | '/centers' | '/requests'
+  to: '/login' | '/' | '/centers/$id' | '/centers' | '/pricing' | '/requests'
   id:
     | '__root__'
     | '/_app'
@@ -81,6 +96,7 @@ export interface FileRouteTypes {
     | '/_app/'
     | '/_app/centers/$id'
     | '/_app/centers/'
+    | '/_app/pricing/'
     | '/_app/requests/'
   fileRoutesById: FileRoutesById
 }
@@ -119,6 +135,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRequestsIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/pricing/': {
+      id: '/_app/pricing/'
+      path: '/pricing'
+      fullPath: '/pricing/'
+      preLoaderRoute: typeof AppPricingIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/centers/': {
       id: '/_app/centers/'
       path: '/centers'
@@ -140,6 +163,7 @@ interface AppRouteChildren {
   AppIndexRoute: typeof AppIndexRoute
   AppCentersIdRoute: typeof AppCentersIdRoute
   AppCentersIndexRoute: typeof AppCentersIndexRoute
+  AppPricingIndexRoute: typeof AppPricingIndexRoute
   AppRequestsIndexRoute: typeof AppRequestsIndexRoute
 }
 
@@ -147,6 +171,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppIndexRoute: AppIndexRoute,
   AppCentersIdRoute: AppCentersIdRoute,
   AppCentersIndexRoute: AppCentersIndexRoute,
+  AppPricingIndexRoute: AppPricingIndexRoute,
   AppRequestsIndexRoute: AppRequestsIndexRoute,
 }
 

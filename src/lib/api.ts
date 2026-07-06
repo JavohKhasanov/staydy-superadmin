@@ -187,6 +187,31 @@ export interface SignupRequest {
   createdAt: string;
 }
 
+// Landing pricing plan — editable from the superadmin panel, rendered on staydy.uz.
+export interface PricingPlan {
+  id: string;
+  planKey: string;
+  name: string;
+  price: string;
+  period: string;
+  tagline: string;
+  features: string[];
+  highlighted: boolean;
+  sortOrder: number;
+  isActive: boolean;
+}
+export interface PlanBody {
+  planKey?: string;
+  name: string;
+  price?: string;
+  period?: string;
+  tagline?: string;
+  features?: string[];
+  highlighted?: boolean;
+  sortOrder?: number;
+  isActive?: boolean;
+}
+
 // ---- Endpoints ----
 export const adminApi = {
   login: (email: string, password: string) =>
@@ -215,6 +240,11 @@ export const adminApi = {
     api.get<SignupRequest[]>("/admin/signup-requests").then((r) => r.data),
   setSignupStatus: (id: string, status: SignupStatus) =>
     api.patch<SignupRequest>(`/admin/signup-requests/${id}`, { status }).then((r) => r.data),
+  listPlans: () => api.get<PricingPlan[]>("/admin/plans").then((r) => r.data),
+  createPlan: (body: PlanBody) => api.post<PricingPlan>("/admin/plans", body).then((r) => r.data),
+  updatePlan: (id: string, body: PlanBody) =>
+    api.put<PricingPlan>(`/admin/plans/${id}`, body).then((r) => r.data),
+  deletePlan: (id: string) => api.delete(`/admin/plans/${id}`).then(() => undefined),
 };
 
 export const PLAN_LABEL: Record<Plan, string> = {

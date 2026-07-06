@@ -1,5 +1,5 @@
 import { Link, useRouter, useRouterState } from "@tanstack/react-router";
-import { LayoutDashboard, Building2, Inbox, LogOut } from "lucide-react";
+import { LayoutDashboard, Building2, Inbox, Tag, LogOut } from "lucide-react";
 import type { ReactNode } from "react";
 import { auth } from "@/lib/api";
 
@@ -17,6 +17,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     { to: "/", label: "Boshqaruv paneli", icon: LayoutDashboard },
     { to: "/centers", label: "Markazlar", icon: Building2 },
     { to: "/requests", label: "So'rovlar", icon: Inbox },
+    { to: "/pricing", label: "Narxlar", icon: Tag },
   ];
 
   return (
