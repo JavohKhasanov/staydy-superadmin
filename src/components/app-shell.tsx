@@ -21,13 +21,13 @@ export function AppShell({ children }: { children: ReactNode }) {
   ];
 
   return (
-    <div className="flex min-h-screen bg-slate-50 text-slate-900">
+    <div className="flex h-screen overflow-hidden bg-slate-50 text-slate-900">
       <aside className="hidden w-64 flex-col border-r border-slate-200 bg-white md:flex">
         <div className="flex items-center gap-2.5 border-b border-slate-200 px-5 py-4">
           <img src="/staydy.png" alt="" className="h-12 w-12 object-contain" />
           <span className="text-xl font-bold text-indigo-600">Staydy</span>
         </div>
-        <nav className="flex-1 space-y-1 p-3">
+        <nav className="flex-1 overflow-y-auto space-y-1 p-3">
           {navItems.map((item) => {
             const active = item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
             return (
@@ -57,7 +57,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           </button>
         </div>
       </aside>
-      <main className="flex-1 overflow-x-auto">
+      <main className="flex-1 overflow-y-auto overflow-x-auto">
         <div className="mx-auto max-w-7xl px-6 py-8">{children}</div>
       </main>
     </div>
