@@ -245,6 +245,8 @@ export const adminApi = {
   updatePlan: (id: string, body: PlanBody) =>
     api.put<PricingPlan>(`/admin/plans/${id}`, body).then((r) => r.data),
   deletePlan: (id: string) => api.delete(`/admin/plans/${id}`).then(() => undefined),
+  changePassword: (currentPassword: string, newPassword: string) =>
+    api.post("/me/change-password", { currentPassword, newPassword }).then(() => undefined),
 };
 
 export const PLAN_LABEL: Record<Plan, string> = {
