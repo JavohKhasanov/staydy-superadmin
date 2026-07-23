@@ -136,7 +136,7 @@ function CenterDetailPage() {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Stat label="Talabalar" value={data.studentCount} icon={Users} accent="bg-sky-50 text-sky-600" />
-        <Stat label="Foydalanuvchilar" value={data.userCount} icon={UserCog} accent="bg-indigo-50 text-indigo-600" />
+        <Stat label="Xodimlar" value={data.userCount} icon={UserCog} accent="bg-indigo-50 text-indigo-600" />
         <Stat label="Xavf ostida" value={data.atRiskCount} icon={AlertTriangle} accent="bg-amber-50 text-amber-600" />
         <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
           <div className="text-sm text-slate-500">Oxirgi faollik</div>

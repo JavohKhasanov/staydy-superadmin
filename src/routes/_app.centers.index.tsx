@@ -105,7 +105,7 @@ function CentersPage() {
                   <th className="px-5 py-3">To'lov</th>
                   <th className="px-5 py-3 text-right">Talabalar</th>
                   <th className="px-5 py-3 text-right">Xavfda</th>
-                  <th className="px-5 py-3 text-right">Foydalanuvchilar</th>
+                  <th className="px-5 py-3 text-right">Xodimlar</th>
                   <th className="px-5 py-3">Qo'shilgan</th>
                 </tr>
               </thead>
