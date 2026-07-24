@@ -2,7 +2,7 @@ import axios, { AxiosError, type AxiosRequestConfig } from "axios";
 
 export const API_BASE_URL =
   (import.meta.env.VITE_API_BASE_URL as string | undefined) ??
-  "https://multi.goport.uz/api/v1";
+  "https://api.staydy.uz/api/v1";
 
 const ACCESS_KEY = "ssa_access_token";
 const REFRESH_KEY = "ssa_refresh_token";
@@ -35,7 +35,12 @@ export const auth = {
   get user(): User | null {
     if (typeof window === "undefined") return null;
     const raw = localStorage.getItem(USER_KEY);
-    return raw ? (JSON.parse(raw) as User) : null;
+    if (!raw) return null;
+    try {
+      return JSON.parse(raw) as User;
+    } catch {
+      return null; // corrupt storage shouldn't crash the shell
+    }
   },
   set(session: AuthResponse) {
     localStorage.setItem(ACCESS_KEY, session.accessToken);
