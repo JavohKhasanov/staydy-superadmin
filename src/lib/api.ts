@@ -51,6 +51,8 @@ export const auth = {
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
+  // Fail fast instead of hanging forever on a slow/stalled response (busy shared server).
+  timeout: 20_000,
   headers: { "ngrok-skip-browser-warning": "true" },
 });
 
